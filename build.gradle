@@ -27,6 +27,7 @@ dependencies {
     
     compile 'com.google.inject:guice:3.0'
     compile 'org.eclipse.jetty:jetty-servlet:9.3.7.v20160115'
+    compile 'com.sun.jersey:jersey-server:1.19'
     compile 'com.sun.jersey.contribs:jersey-guice:1.19'
 
     testCompile 'junit:junit:4.12'

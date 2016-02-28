@@ -1,5 +1,7 @@
 package malicious.mustard;
 
+import malicious.mustard.modules.JerseyModule;
+
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.DefaultServlet;
 import org.eclipse.jetty.servlet.ServletContextHandler;
@@ -23,7 +25,7 @@ public class Main {
     }
 
     public static void main(String[] args) throws Exception {
-        Injector injector = Guice.createInjector();
+        Injector injector = Guice.createInjector(new JerseyModule());
         
         Main main = injector.getInstance(Main.class);
         main.startServer(DEFAULT_PORT);
