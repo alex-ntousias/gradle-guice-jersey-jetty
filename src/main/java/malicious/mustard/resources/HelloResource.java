@@ -8,6 +8,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import malicious.mustard.services.HelloService;
+import malicious.mustard.transport.Greeting;
 
 @Path("/hello")
 public class HelloResource {
@@ -20,8 +21,8 @@ public class HelloResource {
     }
         
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    public String sayHello(@QueryParam("name") String name) {
+    @Produces(MediaType.APPLICATION_JSON)
+    public Greeting sayHello(@QueryParam("name") String name) {
         return helloService.sayHello(name);
     }
     
