@@ -1,0 +1,6 @@
+# Eclipse specific
+/build/
+.classpath
+.gradle
+.project
+.settings
