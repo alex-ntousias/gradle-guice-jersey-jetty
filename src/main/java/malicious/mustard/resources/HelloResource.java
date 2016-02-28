@@ -1,21 +1,28 @@
 package malicious.mustard.resources;
 
+import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import malicious.mustard.services.HelloService;
+
 @Path("/hello")
 public class HelloResource {
 
-    private static final String DEFAULT_NAME = "John Doe";
-    
+    private HelloService helloService;
+
+    @Inject
+    public HelloResource(HelloService helloService) {
+        this.helloService = helloService;
+    }
+        
     @GET
     @Produces(MediaType.TEXT_PLAIN)
-    public String sayHello(@QueryParam("name") String nameParam) {
-        String name = nameParam != null ? nameParam : DEFAULT_NAME;
-        return "Hello " + name;
+    public String sayHello(@QueryParam("name") String name) {
+        return helloService.sayHello(name);
     }
     
 }
