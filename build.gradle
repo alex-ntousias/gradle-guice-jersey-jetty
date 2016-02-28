@@ -1,12 +1,31 @@
 // Apply the java plugin to add support for Java
 apply plugin: 'java'
+apply plugin: 'application'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+mainClassName = "malicious.mustard.Main"
 
 repositories {
     jcenter()
 }
 
+jar {
+    manifest {
+        attributes 'Main-Class': 'malicious.mustard.Main'
+    }
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
 dependencies {
     compile 'org.slf4j:slf4j-api:1.7.12'
+    compile 'org.slf4j:slf4j-simple:1.7.14'
+    
+    compile 'com.google.inject:guice:3.0'
 
     testCompile 'junit:junit:4.12'
 }
