@@ -1,5 +1,6 @@
 package malicious.mustard;
 
+import malicious.mustard.modules.DbModule;
 import malicious.mustard.modules.JerseyModule;
 
 import org.eclipse.jetty.server.Server;
@@ -25,7 +26,10 @@ public class Main {
     }
 
     public static void main(String[] args) throws Exception {
-        Injector injector = Guice.createInjector(new JerseyModule());
+        Injector injector = Guice.createInjector(
+                new JerseyModule(),
+                new DbModule()
+        );
         
         Main main = injector.getInstance(Main.class);
         main.startServer(DEFAULT_PORT);
