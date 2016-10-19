@@ -25,7 +25,7 @@ public class UserService {
         userDao.saveUser(newUser);
     }
 
-    public List<User> getUsersWithoutPasswords() {
+    public List<User> getAllUsers() {
         return userDao.getAllUsers().stream()
                 .map(u -> new User(u.getEmail(), null, u.getDisplayName()))
                 .collect(toList());

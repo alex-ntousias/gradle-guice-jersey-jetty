@@ -33,7 +33,7 @@ public class UserResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<User> getAllUsersWithoutTheirPasswords() {
-        return userService.getUsersWithoutPasswords();
+        return userService.getAllUsers();
     }
 
     @GET
