@@ -12,11 +12,11 @@ import java.util.List;
 @Singleton
 public class UserDao {
 
-    private final DBI dbi;
-    private UserMapper mapper;
-
-    private static final String TABLE_NAME = "USERS";
+    public static final String TABLE_NAME = "USERS";
     private static final String SELECT_ALL = "SELECT * FROM " + TABLE_NAME;
+
+    private final DBI dbi;
+    private final UserMapper mapper;
 
     @Inject
     public UserDao(DBI dbi, UserMapper mapper) {
@@ -34,6 +34,9 @@ public class UserDao {
 
     public void saveUser(User user) {
         try (Handle h = dbi.open()) {
+            if (findUser(user.getEmail()) != null) {
+                throw new IllegalArgumentException("There is already a user with this email");
+            }
             h.execute("INSERT INTO USERS (EMAIL, PASSWORD, DISPLAY_NAME) VALUES (?, ?, ?)",
                     user.getEmail(), user.getPassword(), user.getDisplayName());
         }
