@@ -1,5 +1,8 @@
 package malicious.mustard.transport;
 
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
+@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 public class User {
 
     private String email;
@@ -8,6 +11,12 @@ public class User {
 
     public User() {
         // empty constructor for Jersey
+    }
+
+    public User(String email, String password, String displayName) {
+        this.email = email;
+        this.password = password;
+        this.displayName = displayName;
     }
 
     public String getEmail() {

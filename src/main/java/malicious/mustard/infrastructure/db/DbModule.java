@@ -1,7 +1,6 @@
-package malicious.mustard.modules;
+package malicious.mustard.infrastructure.db;
 
 import com.google.inject.AbstractModule;
-import malicious.mustard.config.H2DataSourceProvider;
 import org.skife.jdbi.v2.DBI;
 
 public class DbModule extends AbstractModule {

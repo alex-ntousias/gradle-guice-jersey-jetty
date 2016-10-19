@@ -1,35 +1,39 @@
 package malicious.mustard.services;
 
-import malicious.mustard.repository.UsersRepository;
+import malicious.mustard.repository.UserDao;
 import malicious.mustard.transport.User;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.util.List;
 
+import static java.util.stream.Collectors.toList;
+
 @Singleton
 public class UserService {
 
-    private final UsersRepository usersRepository;
+    private final UserDao userDao;
     private List<String> userEmails;
 
     @Inject
-    public UserService(UsersRepository usersRepository) {
-        this.usersRepository = usersRepository;
+    public UserService(UserDao userDao) {
+        this.userDao = userDao;
     }
 
     public void createUser(User newUser) {
         assertUserEmail(newUser.getEmail());
-        usersRepository.saveUser(newUser);
+        userDao.saveUser(newUser);
     }
 
-    public List<String> getUserEmails() {
-        return usersRepository.getAllEmails();
+    public List<User> getUsersWithoutPasswords() {
+        return userDao.getAllUsers().stream()
+                .map(u -> new User(u.getEmail(), null, u.getDisplayName()))
+                .collect(toList());
     }
 
     public User getUser(String email) {
         assertUserEmail(email);
-        return usersRepository.findUser(email);
+        return userDao.findUser(email);
     }
 
     private void assertUserEmail(String email) {

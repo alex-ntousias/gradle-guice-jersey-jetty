@@ -1,4 +1,4 @@
-package malicious.mustard.modules;
+package malicious.mustard.infrastructure.jersey;
 
 import org.codehaus.jackson.jaxrs.JacksonJsonProvider;
 

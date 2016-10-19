@@ -1,5 +1,6 @@
-package malicious.mustard.config;
+package malicious.mustard.infrastructure.db;
 
+import malicious.mustard.config.DbConfig;
 import org.h2.jdbcx.JdbcConnectionPool;
 import org.skife.jdbi.v2.DBI;
 
@@ -14,9 +15,9 @@ public class H2DataSourceProvider implements Provider<DBI> {
     private final DBI dbi;
 
     @Inject
-    public H2DataSourceProvider(Config config) {
+    public H2DataSourceProvider(DbConfig dbConfig) {
         final DataSource ds = JdbcConnectionPool
-                .create(config.getDataSourceClass(), config.getUser(), config.getPassword());
+                .create(dbConfig.getDataSourceClass(), dbConfig.getUser(), dbConfig.getPassword());
         dbi = new DBI(ds);
         dbi.open();
     }

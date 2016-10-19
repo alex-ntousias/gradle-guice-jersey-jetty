@@ -1,7 +1,7 @@
 package malicious.mustard;
 
-import malicious.mustard.modules.DbModule;
-import malicious.mustard.modules.JerseyModule;
+import malicious.mustard.infrastructure.db.DbModule;
+import malicious.mustard.infrastructure.jersey.JerseyModule;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.DefaultServlet;

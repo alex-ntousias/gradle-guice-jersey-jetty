@@ -32,8 +32,8 @@ public class UserResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<String> getEmails() {
-        return userService.getUserEmails();
+    public List<User> getAllUsersWithoutTheirPasswords() {
+        return userService.getUsersWithoutPasswords();
     }
 
     @GET
